@@ -7,8 +7,139 @@
     <title>Vite App</title>
   </head>
   <body>
-    <h1>Mi curso JAVA SCRIPT</SCRIPT></h1>
+    <h1>Desarrollo de Software</SCRIPT></h1>
+    <h1>Trabajo Practico de JavaScript</h1>
     <div id="app"></div>
     <script type="module" src="/main.js"></script>
-  </body>
+   
+    <p>Este es el primer párrafo.</p>
+    <p>Este es el segundo párrafo.</p>
+    <p>Este es el tercer párrafo.</p>
+
+    <button id="cambiarColorBtn">Cambiar Color a Azul</button>
+
+    <script>
+        // Función que se ejecuta cuando se hace clic en el botón
+        function cambiarColorParrafos() {
+            // Selecciona todos los elementos <p> en el documento
+            var parrafos = document.querySelectorAll('p');
+
+            // Itera sobre cada elemento <p> y cambia su color de texto a azul
+            parrafos.forEach(function(parrafo) {
+                parrafo.style.color = 'blue';
+            });
+        }
+
+        // Asigna la función al evento de clic del botón
+        document.getElementById('cambiarColorBtn').addEventListener('click', cambiarColorParrafos);
+    </script>
+    
+    <form id="miFormulario">
+      <label for="textoInput">Ingrese un texto:</label>
+      <input type="text" id="textoInput" name="textoInput">
+      <button type="button" id="mostrarAlertaBtn">Mostrar Alerta</button>
+  </form>
+<h1><p>
+<br>
+</p></h1>
+  <script>
+      function mostrarAlerta() {
+          // Obtiene el valor del campo de texto y lo asigna a la variable 'texto'
+          var texto = document.getElementById('textoInput').value;
+          
+          // Muestra una alerta con el valor ingresado
+          alert(texto);
+      }
+
+      // Asigna la función al evento de clic del botón
+      document.getElementById('mostrarAlertaBtn').addEventListener('click', mostrarAlerta);
+  </script>
+  
+  <ul id="lista">
+    <li>Elemento 1</li>
+    <li>Elemento 2</li>
+    <li>Elemento 3</li>
+    <li>Elemento 4</li>
+</ul>
+
+<script>
+    // Seleccionar todos los elementos <li> dentro de la lista con id "lista"
+    const elementosLi = document.querySelectorAll('#lista li');
+
+    // Recorrer cada elemento <li> y agregar un evento click
+    elementosLi.forEach(function(elemento) {
+        elemento.addEventListener('click', function() {
+            // Mostrar el texto del elemento en la consola
+            console.log(elemento.textContent);
+        });
+    });
+</script>
+
+<input type="text" id="campoTexto" placeholder="Escribe algo aquí">
+    <button id="deshabilitarBtn">Deshabilitar Campo</button>
+    <button id="habilitarBtn">Habilitar Campo</button>
+
+    <script>
+        // Seleccionar el campo de texto y los botones
+        const campoTexto = document.getElementById('campoTexto');
+        const deshabilitarBtn = document.getElementById('deshabilitarBtn');
+        const habilitarBtn = document.getElementById('habilitarBtn');
+
+        // Agregar evento click al botón de deshabilitar
+        deshabilitarBtn.addEventListener('click', function() {
+            campoTexto.disabled = true;
+        });
+
+        // Agregar evento click al botón de habilitar
+        habilitarBtn.addEventListener('click', function() {
+            campoTexto.disabled = false;
+        });
+    </script>
+    
+
+    <h1><br><br></h1>
+    <form id="emailForm">
+        <label for="emailInput">Correo Electrónico:</label>
+        <input type="email" id="emailInput" required>
+        <button type="submit">Guardar Correo</button>
+    </form>
+
+    <div id="emailDisplay"></div>
+
+    <script>
+        // Función para mostrar el correo en el DOM
+        function mostrarCorreo(email) {
+            const emailDisplay = document.getElementById('emailDisplay');
+            emailDisplay.innerHTML = `
+                <p>Correo almacenado: ${email}</p>
+                <button id="deleteButton">Eliminar Correo</button>
+            `;
+
+            // Agregar evento al botón de eliminar
+            document.getElementById('deleteButton').addEventListener('click', function() {
+                localStorage.removeItem('email');
+                emailDisplay.innerHTML = '';
+            });
+        }
+
+        // Función para cargar el correo desde localStorage al cargar la página
+        function cargarCorreo() {
+            const email = localStorage.getItem('email');
+            if (email) {
+                mostrarCorreo(email);
+            }
+        }
+
+        // Evento para guardar el correo en localStorage al enviar el formulario
+        document.getElementById('emailForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevenir el envío del formulario
+            const emailInput = document.getElementById('emailInput').value;
+            localStorage.setItem('email', emailInput);
+            mostrarCorreo(emailInput);
+        });
+
+        // Cargar el correo al cargar la página
+        cargarCorreo();
+    </script>
+</body>
 </html>
